@@ -5,6 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   preview: {
-    port: 5001, // Defina a porta desejada aqui
+    port: 6001, // Defina a porta desejada aqui
   },
 })
