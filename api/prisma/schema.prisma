@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Vouch {
+  id             Int           @id @default(autoincrement())
+  codigo         String        @unique
+  disponivel     Boolean       @default(true)
+  participante   Participante? @relation(fields: [participanteId], references: [id])
+  participanteId Int? // Remove o @unique pois agora é uma relação um-para-muitos
+  convidado      Convidado?    @relation(fields: [convidadoId], references: [id])
+  convidadoId    Int?          @unique
+
+  @@map("vouches")
+}
+
+model Participante {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  cpf       String   @unique
+  utilizado Boolean  @default(false)
+  data      DateTime @default(now())
+  vouches   Vouch[] // Altere de uma relação de um único vouch para uma lista de vouches
+
+  @@map("participantes")
+}
+
+model Convidado {
+  id      Int    @id @default(autoincrement())
+  nome    String
+  email   String @unique
+  cpf     String @unique
+  vouch   Vouch? @relation
+  vouchId Int?   @unique
+
+  @@map("convidados") // Mapeia o nome da tabela no banco de dados
+}
