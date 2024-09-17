@@ -1,0 +1,94 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/background.png'); /* Caminho para a imagem */
+  background-size:auto ; /* Faz a imagem cobrir todo o fundo */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Impede que a imagem se repita */
+  height: 100vh; /* Faz o fundo cobrir toda a altura da página */
+  object-fit: fill;
+}
+
+.generate-voucher-btn {
+  width:210px;
+  background-color: #b4b4b5;
+  color: #334155;
+  font-size: 16px;
+  margin-top: 1rem;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.generate-voucher-btn:hover {
+  background-color: #b7b7b7;
+  color:#374151
+}
+
+.generate-voucher-btn:focus {
+  outline: none;
+}
+
+.button_search{
+  padding: 0.4rem;
+  border-radius: 5px;
+  background-color: #D3B622;
+}
+.content_search{
+  width: 100%;
+  align-items: start;
+  display: flex ;
+  flex-direction: column;
+  gap: 0.5rem;
+ 
+}
+.input_cpf{
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px solid gray; 
+  
+}
+input:focus {
+  outline: none; /* Remove o contorno padrão ao dar foco */
+  border-color: #d3b622; /* Torna a borda invisível */
+}
+
+/* CSS */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 20px; /* equivalente a w-5 */
+  height: 24px; /* equivalente a h-6 */
+  border-top: 3px solid gray; /* equivalente a border-t-[3px] border-gray-500 */
+  border-bottom: 3px solid gray; /* equivalente a border-b-[3px] border-gray-500 */
+  border-radius: 50%; /* equivalente a rounded-full */
+  animation: spin 1s linear infinite; /* equivalente a animate-spin */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.imagem_banner{
+  width: 100%;
+  margin-bottom: 2rem;
+}
