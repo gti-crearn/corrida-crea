@@ -7,4 +7,7 @@ export default defineConfig({
   preview: {
     port: 6001, // Defina a porta desejada aqui
   },
+  server: {
+    host: true
+  }
 })

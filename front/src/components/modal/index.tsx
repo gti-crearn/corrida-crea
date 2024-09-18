@@ -24,22 +24,24 @@ export function ComponenteModal(props: any) {
     const cpfFormatado = cpf.replace(/[.-]/g, '')
     // const []
 
-    async function getprofissional() {
-        setIsLoading(true)
-        setTimeout(() => {
-            api.get(`/profissional/${cpfFormatado}`)
-                .then((response) => {
-                    setData(response.data)
-                    console.log(response.data)
-                    setIsLoading(false)
-                })
-                .catch((error) => {
-                    const { data } = error.response
-
-                    setMessage(data.message)
-                    setIsLoading(false)
-                })
-        }, 2000)
+    async function getProfissional() {
+        setIsLoading(true);
+    
+        try {
+            const response = await api.get(`/profissional/${cpfFormatado}`);
+            setData(response.data);
+            console.log(response.data);
+        } catch (error:any) {
+            // Verifique se error.response existe antes de desestruturar
+            if (error.response && error.response.data) {
+                setMessage(error.response.data.message);
+            } else {
+                setMessage('Ocorreu um erro inesperado. Tente novamente mais tarde.');
+            }
+        } finally {
+            // Garantir que setIsLoading seja falso no fim do processo
+            setIsLoading(false);
+        }
     }
 
     async function registrarVouche() {
@@ -78,7 +80,7 @@ export function ComponenteModal(props: any) {
 
     useEffect(() => {
         if (cpf.length === 14) {
-            getprofissional()
+            getProfissional()
         }
     }, [cpf])
     return (
