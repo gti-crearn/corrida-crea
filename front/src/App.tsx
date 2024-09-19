@@ -13,8 +13,6 @@ function App() {
         onHide={() => setModalShow(false)}
       />
     </div>
-
-
   )
 }
 
