@@ -137,7 +137,7 @@ export function ComponenteModal(props: any) {
                                 Clique no botão abaixo para consultar e gerar os seus vouchers.
 
                             </div>
-                            <button className='generate-voucher-btn' onClick={() => setActive(true)}>Quero meu Vouche</button>
+                            <button className='generate-voucher-btn' onClick={() => setActive(true)}>Quero meu Voucher</button>
                         </div>
                     )}
 
