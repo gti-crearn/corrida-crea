@@ -112,7 +112,7 @@ export const criarParticipante = async (dados: ParticipanteInput) => {
     });
 
     if (participanteExistente) {
-        throw new AppError('Já existe um participante com este email ou CPF.', 400);
+        throw new AppError('Já existe um participante cadastrado com este e-mail ou CPF. Os dois vouchers já foram enviados para o e-mail registrado.', 400);
     }
 
     // 2. Cria um participante
