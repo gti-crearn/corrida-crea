@@ -109,7 +109,7 @@ export function ComponenteModal(props: any) {
                             {data.nome && (
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <img src="/voucher.webp" width={80} alt="" />
-                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 2 Vouchers disponivel, que será enviado para o email  <strong>{data?.email}</strong>  </span>
+                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 2 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{fontSize:"1.2rem"}}>{data?.email}</strong>  </span>
 
                                     <button className='generate-voucher-btn' onClick={registrarVouche}>{
                                         loading ? "Aguarde..." : "Clique para emitir"
