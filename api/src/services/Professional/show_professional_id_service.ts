@@ -23,7 +23,7 @@ export class ShowProfessionalIdService {
         nome: servidor.servidor,
         email: servidor.email,
         cpf: servidor.cpf,
-        cat: "- Funcionário/CREA-RN/Multua"       
+        cat: "- CREA-RN/MÚTUA"       
       };
     }
 
