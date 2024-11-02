@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { api } from '../../services/api';
 import { maskCpf } from '../../utils/mask_cpf';
 import { ComponenteModalAlert } from './modaInfo';
+import { Tag } from '@phosphor-icons/react';
 
 
 
@@ -54,13 +55,13 @@ export function ComponenteModal(props: any) {
         setTimeout(() => {
             api.post(`/corrida/participantes`, dataRequest)
                 .then((response) => {
-                    setData(response.data)      
-                    props.onHide()             
+                    setData(response.data)
+                    props.onHide()
                     setModalShow(true)
                     setLoading(false)
                     setCpf("")
                     setMessage("")
-                    
+
                 })
                 .catch((error) => {
                     const { data } = error.response
@@ -84,8 +85,10 @@ export function ComponenteModal(props: any) {
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                backdrop="static"
+            
             >
-                <Modal.Header closeButton>
+                <Modal.Header >
                     {/* <div>
                     <h5> CORRIDA CREA-RN</h5>
                     {active && <p>Informe CPF para consultar a disponibilidade dos seus vouchers</p>}
@@ -103,13 +106,17 @@ export function ComponenteModal(props: any) {
 
                             </div>
                             {isloading && "Estamos consultando, aguarde..."}
-                            {message ? message : (<p style={{ marginTop: "1rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}  {data.cat?.toUpperCase()} </p>)}
-                           
+                            {message ? message : (
+                                <>
+                                    <strong style={{ marginTop: "2rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}   </strong> <span style={{fontSize:"0.85rem"}}>{ data.cat?.toUpperCase() }</span>
+                                </>
+                            )}
+
 
                             {data.nome && (
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <img src="/voucher.webp" width={80} alt="" />
-                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 2 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{fontSize:"1.2rem"}}>{data?.email}</strong>  </span>
+                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 2 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{ fontSize: "1.2rem" }}>{data?.email}</strong>  </span>
 
                                     <button className='generate-voucher-btn' onClick={registrarVouche}>{
                                         loading ? "Aguarde..." : "Clique para emitir"
@@ -139,7 +146,7 @@ export function ComponenteModal(props: any) {
                                 Clique no botão abaixo para consultar e gerar os seus vouchers.
 
                             </div>
-                            <button className='generate-voucher-btn' onClick={() => setActive(true)}>Quero meu Voucher</button>
+                            <button className='generate-voucher-btn' onClick={() => setActive(true)}> <Tag size={25} /> Quero meu Voucher</button>
                         </div>
                     )}
 
