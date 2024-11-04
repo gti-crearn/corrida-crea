@@ -5,8 +5,9 @@
   text-align: center;
 } */
 
-body {
+.back {
   margin: 0;
+  width: 100%;
   padding: 0;
   background-image: url('/background.png'); /* Caminho para a imagem */
   background-size:auto ; /* Faz a imagem cobrir todo o fundo */
