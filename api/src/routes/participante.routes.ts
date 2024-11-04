@@ -1,5 +1,5 @@
 
-import { listParticipantesComVouchers } from '@models/Professional/get_participantes_vonchers';
+import { listParticipantesComVouchers } from '../services/Professional/get_participantes_vonchers';
 import { criarParticipante } from '../services/participantes/participantes_services';
 import { Request, Response, Router } from 'express'
 
