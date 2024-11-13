@@ -28,7 +28,8 @@ export function ComponenteModal(props: any) {
     const [modalShow, setModalShow] = useState(false);
 
     // const []
-
+    const [participants, setParticipants] = useState<Participante[]>([]);
+    const [availableVouchersCount, setAvailableVouchersCount] = useState<number>(0);
     async function getprofissional() {
         setIsLoading(true)
         setTimeout(() => {
@@ -44,6 +45,31 @@ export function ComponenteModal(props: any) {
                 })
         }, 2000)
     }
+
+    const fetchParticipants = async () => {
+        try {
+            setLoading(true);
+            const response = await api.get(
+                `corrida/participantes_list`,
+                {
+                    params: { codigo: "Crea@2024" },
+                }
+            );
+
+            console.log(response.data)
+            setParticipants(response.data.participantes);
+            setAvailableVouchersCount(response.data.quantidadeVouchersDisponiveis);
+
+        } catch (err) {
+            console.log('Erro ao carregar os dados dos participantes');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchParticipants()
+    }, [])
 
     async function registrarVouche() {
         setLoading(true)
@@ -86,7 +112,7 @@ export function ComponenteModal(props: any) {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 backdrop="static"
-            
+
             >
                 <Modal.Header >
                     {/* <div>
@@ -108,7 +134,7 @@ export function ComponenteModal(props: any) {
                             {isloading && "Estamos consultando, aguarde..."}
                             {message ? message : (
                                 <>
-                                    <strong style={{ marginTop: "2rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}   </strong> <span style={{fontSize:"0.85rem"}}>{ data.cat?.toUpperCase() }</span>
+                                    <strong style={{ marginTop: "2rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}   </strong> <span style={{ fontSize: "0.85rem" }}>{data.cat?.toUpperCase()}</span>
                                 </>
                             )}
 
@@ -127,27 +153,38 @@ export function ComponenteModal(props: any) {
                         </>
 
                     ) : (
-                        <div>
-                            <h5>Voucher de 50% de Desconto na Inscrição da Corrida CREA-RN </h5>
-                            <div>
-                                Se você faz parte de um dos grupos abaixo, tem direito a dois vouchers de 50% de desconto na inscrição da Corrida CREA-RN : um para você e outro para um convidado.
-                                <ul style={{ marginTop: "1rem" }}>
-                                    <li> Profissionais Registrados no Sistema Confea/Crea;</li>
-                                    <li> Funcionários e Estagiários do CREA-RN;</li>
-                                    <li> Funcionários da Mútua.</li>
-                                </ul>
-                                <h5>Condições de Uso</h5>
+                        <>
+                            {availableVouchersCount === 0 ? (
+                                <>
+                                    <strong>Todos os Vouchers Foram Distribuídos</strong>
+                                    <p>
+                                        No momento, não temos mais vouchers disponíveis. Continue nos acompanhando para novidades!</p>
+                                </>
+                            ) : (
+                                <div>
+                                    <h5>Voucher de 50% de Desconto na Inscrição da Corrida CREA-RN </h5>
+                                    <div>
+                                        Se você faz parte de um dos grupos abaixo, tem direito a dois vouchers de 50% de desconto na inscrição da Corrida CREA-RN : um para você e outro para um convidado.
+                                        <ul style={{ marginTop: "1rem" }}>
+                                            <li> Profissionais Registrados no Sistema Confea/Crea;</li>
+                                            <li> Funcionários e Estagiários do CREA-RN;</li>
+                                            <li> Funcionários da Mútua.</li>
+                                        </ul>
+                                        <h5>Condições de Uso</h5>
 
-                                <ul style={{ marginTop: "1rem" }}>
-                                    <li>Cada pessoa tem direito a dois vouchers : um para uso próprio e outro para um convidado.</li>
-                                    <li> O voucher é exclusivo e poderá ser utilizado apenas uma vez, ficando vinculado ao CPF do beneficiário.</li>
-                                    <li> O uso indevido ou fora das condições estabelecidas resultará no cancelamento do desconto.</li>
-                                </ul>
-                                Clique no botão abaixo para consultar e gerar os seus vouchers.
+                                        <ul style={{ marginTop: "1rem" }}>
+                                            <li>Cada pessoa tem direito a dois vouchers : um para uso próprio e outro para um convidado.</li>
+                                            <li> O voucher é exclusivo e poderá ser utilizado apenas uma vez, ficando vinculado ao CPF do beneficiário.</li>
+                                            <li> O uso indevido ou fora das condições estabelecidas resultará no cancelamento do desconto.</li>
+                                        </ul>
+                                        Clique no botão abaixo para consultar e gerar os seus vouchers.
 
-                            </div>
-                            <button className='generate-voucher-btn' onClick={() => setActive(true)}> <Tag size={25} /> Quero meu Voucher</button>
-                        </div>
+                                    </div>
+                                    <button className='generate-voucher-btn' onClick={() => setActive(true)}> <Tag size={25} /> Quero meu Voucher</button>
+                                </div>
+                            )}
+                        </>
+
                     )}
 
                 </Modal.Body>
