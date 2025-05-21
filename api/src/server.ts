@@ -34,4 +34,4 @@ app.use(
   }
 )
 
-app.listen(6000, ()=> console.log('Servidor rodando'))
+app.listen(3333, ()=> console.log('Servidor rodando'))

@@ -22,14 +22,15 @@ model Vouch {
 model Participante {
   id        Int      @id @default(autoincrement())
   nome      String
-  email     String   @unique
-  cpf       String   @unique
+  email     String   // <- REMOVA @unique
+  cpf       String   // <- REMOVA @unique
   utilizado Boolean  @default(false)
   data      DateTime @default(now())
-  vouches   Vouch[] // Altere de uma relação de um único vouch para uma lista de vouches
+  vouches   Vouch[]
 
   @@map("participantes")
 }
+
 
 model Convidado {
   id      Int    @id @default(autoincrement())

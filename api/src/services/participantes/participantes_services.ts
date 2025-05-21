@@ -99,22 +99,30 @@ async function sendEmail(participanteEmail: string, participanteNome: string, vo
         throw new Error('Erro no envio de e-mail');
     }
 }
-
+const anoAtual = new Date().getFullYear();
 export const criarParticipante = async (dados: ParticipanteInput) => {
     // 1. Verifica se já existe um participante com o mesmo CPF ou email
     const participanteExistente = await prisma.participante.findFirst({
         where: {
-            OR: [
+          AND: [
+            {
+              OR: [
                 { email: dados.email },
                 { cpf: dados.cpf },
-            ],
+              ],
+            },
+            {
+              data: {
+                gte: new Date(`${anoAtual}-01-01T00:00:00.000Z`),
+                lt: new Date(`${anoAtual + 1}-01-01T00:00:00.000Z`),
+              },
+            },
+          ],
         },
-    });
-
+      });
     if (participanteExistente) {
-        throw new AppError('Já existe um participante cadastrado com este e-mail ou CPF. Os dois vouchers já foram enviados para o e-mail registrado.', 400);
+        throw new AppError('Já existe um participante cadastrado com este e-mail ou CPF. O voucher já foi enviado para o e-mail registrado.', 400);
     }
-
     // 2. Cria um participante
     const participante = await prisma.participante.create({
         data: {
@@ -124,15 +132,15 @@ export const criarParticipante = async (dados: ParticipanteInput) => {
         },
     });
 
-    // 3. Busca dois vouches disponíveis
+    // 3. Busca um vouche disponíveis
     const vouchesDisponiveis = await prisma.vouch.findMany({
         where: {
             disponivel: true,
         },
-        take: 2, // Pega apenas 2
+        take: 1,
     });
 
-    if (vouchesDisponiveis.length < 2) {
+    if (vouchesDisponiveis.length < 1) {
         throw new AppError('Não há vouches suficientes disponíveis.');
     }
 
