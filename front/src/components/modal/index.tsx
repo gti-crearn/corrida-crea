@@ -56,7 +56,7 @@ export function ComponenteModal(props: any) {
                 }
             );
 
-            console.log(response.data)
+            console.log(response.data, "vOCHERS DISPONIVEIS")
             setParticipants(response.data.participantes);
             setAvailableVouchersCount(response.data.quantidadeVouchersDisponiveis);
 
@@ -142,7 +142,7 @@ export function ComponenteModal(props: any) {
                             {data.nome && (
                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                     <img src="/voucher.webp" width={80} alt="" />
-                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 2 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{ fontSize: "1.2rem" }}>{data?.email}</strong>  </span>
+                                    <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 1 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{ fontSize: "1.2rem" }}>{data?.email}</strong>  </span>
 
                                     <button className='generate-voucher-btn' onClick={registrarVouche}>{
                                         loading ? "Aguarde..." : "Clique para emitir"
@@ -164,7 +164,7 @@ export function ComponenteModal(props: any) {
                                 <div>
                                     <h5>Voucher de 50% de Desconto na Inscrição da Corrida CREA-RN </h5>
                                     <div>
-                                        Se você faz parte de um dos grupos abaixo, tem direito a dois vouchers de 50% de desconto na inscrição da Corrida CREA-RN : um para você e outro para um convidado.
+                                        Se você faz parte de um dos grupos abaixo, tem direito a um voucher de 50% de desconto na inscrição da Corrida CREA-RN : um para você e outro para um convidado.
                                         <ul style={{ marginTop: "1rem" }}>
                                             <li> Profissionais Registrados no Sistema Confea/Crea;</li>
                                             <li> Funcionários e Estagiários do CREA-RN;</li>
@@ -173,11 +173,11 @@ export function ComponenteModal(props: any) {
                                         <h5>Condições de Uso</h5>
 
                                         <ul style={{ marginTop: "1rem" }}>
-                                            <li>Cada pessoa tem direito a dois vouchers : um para uso próprio e outro para um convidado.</li>
+                                            <li>Cada profissional tem direito a um voucher, para uso próprio.</li>
                                             <li> O voucher é exclusivo e poderá ser utilizado apenas uma vez, ficando vinculado ao CPF do beneficiário.</li>
                                             <li> O uso indevido ou fora das condições estabelecidas resultará no cancelamento do desconto.</li>
                                         </ul>
-                                        Clique no botão abaixo para consultar e gerar os seus vouchers.
+                                        Clique no botão abaixo para consultar e gerar os seu voucher.
 
                                     </div>
                                     <button className='generate-voucher-btn' onClick={() => setActive(true)}> <Tag size={25} /> Quero meu Voucher</button>
