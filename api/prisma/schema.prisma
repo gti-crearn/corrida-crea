@@ -15,6 +15,7 @@ model Vouch {
   participanteId Int? // Remove o @unique pois agora é uma relação um-para-muitos
   convidado      Convidado?    @relation(fields: [convidadoId], references: [id])
   convidadoId    Int?          @unique
+  data      DateTime @default(now())
 
   @@map("vouches")
 }
