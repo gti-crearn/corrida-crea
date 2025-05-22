@@ -105,55 +105,41 @@ export function ComponenteModal(props: any) {
         }
     }, [cpf])
     return (
-        <div>
+        <div >
             <Modal
                 {...props}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 backdrop="static"
-
-            >
-                <Modal.Header >
-                    {/* <div>
-                    <h5> CORRIDA CREA-RN</h5>
-                    {active && <p>Informe CPF para consultar a disponibilidade dos seus vouchers</p>}
-                </div> */}
-
-                </Modal.Header>
-                <Modal.Body>
-                    <img src="/banner.png" alt="" className='imagem_banner' />
+            >              
+                <Modal.Body style={{background: "oklch(96.7% 0.003 264.542)", padding:"0",}}>
+                    <img src="/banner.png" alt="" className='imagem_banner'  />
                     {active ? (
-                        <>
-
+                        <div style={{padding:"1rem"}}>
                             <div className='content_search'>
-                                <strong>Informe seu CPF</strong>
+                                <strong style={{fontSize:"0.875rem"}}>INFORME SEU CPF</strong>
                                 <input className='input_cpf' value={maskCpf(cpf)} placeholder='CPF' type="text" onChange={(e) => setCpf(e.target.value)} />
-
                             </div>
                             {isloading && "Estamos consultando, aguarde..."}
                             {message ? message : (
-                                <>
+                                <div style={{padding:"0.5rem 0"}}>
                                     <strong style={{ marginTop: "2rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}   </strong> <span style={{ fontSize: "0.85rem" }}>{data.cat?.toUpperCase()}</span>
-                                </>
+                                </div>
                             )}
-
-
                             {data.nome && (
                                 <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <img src="/voucher.webp" width={80} alt="" />
                                     <span style={{ fontWeight: 'bold', color: "#4b5563" }}>Você possui 1 vouchers disponíveis, que serão enviados para o e-mail  <strong style={{ fontSize: "1.2rem" }}>{data?.email}</strong>  </span>
-
                                     <button className='generate-voucher-btn' onClick={registrarVouche}>{
                                         loading ? "Aguarde..." : "Clique para emitir"
                                     } </button>
 
                                 </div>
                             )}
-                        </>
+                        </div>
 
                     ) : (
-                        <>
+                        <div style={{padding:"1rem"}}>
                             {availableVouchersCount === 0 ? (
                                 <>
                                     <strong>Todos os Vouchers Foram Distribuídos</strong>
@@ -183,7 +169,7 @@ export function ComponenteModal(props: any) {
                                     <button className='generate-voucher-btn' onClick={() => setActive(true)}> <Tag size={25} /> Quero meu Voucher</button>
                                 </div>
                             )}
-                        </>
+                        </div>
 
                     )}
 

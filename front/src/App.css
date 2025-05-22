@@ -49,7 +49,7 @@
 .button_search{
   padding: 0.4rem;
   border-radius: 5px;
-  background-color: #D3B622;
+  background-color: #DE8554;
 }
 .content_search{
   width: 100%;
@@ -63,12 +63,12 @@
 .input_cpf{
   width: 100%;
   padding: 0.7rem;
-  border: 2px solid gray; 
+  border: 2px solid #DE8554; 
   
 }
 input:focus {
   outline: none; /* Remove o contorno padrão ao dar foco */
-  border-color: #d3b622; /* Torna a borda invisível */
+  border-color: #DE8554; /* Torna a borda invisível */
 }
 
 /* CSS */
