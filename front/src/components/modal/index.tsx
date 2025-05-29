@@ -148,9 +148,9 @@ export function ComponenteModal(props: any) {
                                 </>
                             ) : (
                                 <div>
-                                    <h5>Voucher de 50% de Desconto na Inscrição da Corrida CREA-RN </h5>
+                                    <h5>Voucher de Inscrição da Corrida CREA-RN 2025 </h5>
                                     <div>
-                                        Se você faz parte de um dos grupos abaixo, tem direito a um voucher de 50% de desconto na inscrição da Corrida CREA-RN : um para você e outro para um convidado.
+                                    Se você faz parte de um dos grupos abaixo, tem direito a um voucher de inscrição do primeiro lote exclusivo da Corrida CREA-RN.
                                         <ul style={{ marginTop: "1rem" }}>
                                             <li> Profissionais Registrados no Sistema Confea/Crea;</li>
                                             <li> Funcionários e Estagiários do CREA-RN;</li>
@@ -161,7 +161,7 @@ export function ComponenteModal(props: any) {
                                         <ul style={{ marginTop: "1rem" }}>
                                             <li>Cada profissional tem direito a um voucher, para uso próprio.</li>
                                             <li> O voucher é exclusivo e poderá ser utilizado apenas uma vez, ficando vinculado ao CPF do beneficiário.</li>
-                                            <li> O uso indevido ou fora das condições estabelecidas resultará no cancelamento do desconto.</li>
+                                            <li> O uso indevido ou fora das condições estabelecidas resultará no cancelamento da inscrição.</li>
                                         </ul>
                                         Clique no botão abaixo para consultar e gerar os seu voucher.
 
