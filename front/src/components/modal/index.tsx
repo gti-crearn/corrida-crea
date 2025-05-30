@@ -41,6 +41,8 @@ export function ComponenteModal(props: any) {
                 })
                 .catch((error) => {
                     console.log(error)
+                    const {data} = error.response
+                    alert(data.message)
                     setIsLoading(false)
                 })
         }, 2000)
