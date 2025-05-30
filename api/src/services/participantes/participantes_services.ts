@@ -48,16 +48,14 @@ async function sendEmail(participanteEmail: string, participanteNome: string, vo
 
 <body style="font-family: Arial, sans-serif;">
     <div style="width: 100%; display: flex; justify-content: center; ">
-        <img src="https://crea-rn.org.br/wp-content/uploads/2024/09/Banner-Corrida-SITE.jpg"
+        <img src="https://crea-rn.org.br/storage/rG0wJJw1QTRXDOxWvOCscTRzB5So5IcRvcQURYRS.jpg"
             style="height:15rem; object-fit: cover; width: 70%; border-radius: 8px;" alt="Logo" class="footer-logo">
     </div>
     <div style="width: 100%; display: flex; justify-content: center; margin-top: 1rem;">
         <h2> Olá, ${participanteNome}</h2>
     </div>
     <div class="message">
-        <p>Aqui estão seus códigos de voucher, que garantem 50% de desconto para sua inscrição e a de um convidado na
-            corrida do CREA-RN. </p>
-
+        <p>Aqui está seu voucher, que garantem inscrição do primeiro lote exclusivo da Corrida CREA-RN. </p>
     </div>
     <table>
         <td>
@@ -80,7 +78,7 @@ async function sendEmail(participanteEmail: string, participanteNome: string, vo
         </div>
         <div>
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMbgBihpJi5cwP3OvF4_Lo4CHGCsPvyh72fEHtPuFm&s "
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMbgBihpJi5cwP3OvF4_Lo4CHGCsPvyh72fEHtPuFm&s"
                 style="width: 250px;" alt="">
         </div>
 
