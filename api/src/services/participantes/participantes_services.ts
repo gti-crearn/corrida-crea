@@ -63,7 +63,7 @@ async function sendEmail(participanteEmail: string, participanteNome: string, vo
                 <h2 style="color: blue; font-weight: bold;"> ${vouchCodes}</h2>
             </div>
             <p>Clique no link abaixo para fazer sua inscrição</p>
-            <a href="https://site.ticketsports.com.br/Inscricao/categoria.aspx?__idEvento=69667&origem=ticketsports&lang=pt-BR#" style="color: blue; text-decoration: none;"> 
+            <a href="https://www.ticketsports.com.br/e/2-corrida-do-crea-rn-2025-72630"
                 <button style="cursor: pointer;background-color: #1d4ed8; color: white; padding: 0.5rem; border:0; width: 200px;">Inscreva-se</button>
             </a>
         </td>
