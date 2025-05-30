@@ -27,8 +27,6 @@ export function ComponenteModal(props: any) {
 
     const [modalShow, setModalShow] = useState(false);
 
-    // const []
-    const [participants, setParticipants] = useState<Participante[]>([]);
     const [availableVouchersCount, setAvailableVouchersCount] = useState<number>(0);
     async function getprofissional() {
         setIsLoading(true)
@@ -41,7 +39,13 @@ export function ComponenteModal(props: any) {
                 })
                 .catch((error) => {
                     console.log(error)
-                    const {data} = error.response
+                    const { data } = error.response
+                    setData({
+                        nome: "",
+                        email: "",
+                        cpf: "",
+                        cat: ""
+                    } as Participante)
                     alert(data.message)
                     setIsLoading(false)
                 })
@@ -58,8 +62,6 @@ export function ComponenteModal(props: any) {
                 }
             );
 
-            console.log(response.data, "vOCHERS DISPONIVEIS")
-            setParticipants(response.data.participantes);
             setAvailableVouchersCount(response.data.quantidadeVouchersDisponiveis);
 
         } catch (err) {
@@ -114,18 +116,18 @@ export function ComponenteModal(props: any) {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 backdrop="static"
-            >              
-                <Modal.Body style={{background: "oklch(96.7% 0.003 264.542)", padding:"0",}}>
-                    <img src="/banner.png" alt="" className='imagem_banner'  />
+            >
+                <Modal.Body style={{ background: "oklch(96.7% 0.003 264.542)", padding: "0", }}>
+                    <img src="/banner.png" alt="" className='imagem_banner' />
                     {active ? (
-                        <div style={{padding:"1rem"}}>
+                        <div style={{ padding: "1rem" }}>
                             <div className='content_search'>
-                                <strong style={{fontSize:"0.875rem"}}>INFORME SEU CPF</strong>
+                                <strong style={{ fontSize: "0.875rem" }}>INFORME SEU CPF</strong>
                                 <input className='input_cpf' value={maskCpf(cpf)} placeholder='CPF' type="text" onChange={(e) => setCpf(e.target.value)} />
                             </div>
                             {isloading && "Estamos consultando, aguarde..."}
                             {message ? message : (
-                                <div style={{padding:"0.5rem 0"}}>
+                                <div style={{ padding: "0.5rem 0" }}>
                                     <strong style={{ marginTop: "2rem", fontWeight: 'bold', color: "#4b5563" }}>{data.nome}   </strong> <span style={{ fontSize: "0.85rem" }}>{data.cat?.toUpperCase()}</span>
                                 </div>
                             )}
@@ -141,7 +143,7 @@ export function ComponenteModal(props: any) {
                         </div>
 
                     ) : (
-                        <div style={{padding:"1rem"}}>
+                        <div style={{ padding: "1rem" }}>
                             {availableVouchersCount === 0 ? (
                                 <>
                                     <strong>Todos os Vouchers Foram Distribuídos</strong>
@@ -152,7 +154,7 @@ export function ComponenteModal(props: any) {
                                 <div>
                                     <h5>Voucher de Inscrição da Corrida CREA-RN 2025 </h5>
                                     <div>
-                                    Se você faz parte de um dos grupos abaixo, tem direito a um voucher de inscrição do primeiro lote exclusivo da Corrida CREA-RN.
+                                        Se você faz parte de um dos grupos abaixo, tem direito a um voucher de inscrição do primeiro lote exclusivo da Corrida CREA-RN.
                                         <ul style={{ marginTop: "1rem" }}>
                                             <li> Profissionais Registrados no Sistema Confea/Crea;</li>
                                             <li> Funcionários e Estagiários do CREA-RN;</li>
