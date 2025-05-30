@@ -26,6 +26,7 @@ export function ComponenteModal(props: any) {
     const cpfFormatado = cpf.replace(/[.-]/g, '')
 
     const [modalShow, setModalShow] = useState(false);
+    
 
     const [availableVouchersCount, setAvailableVouchersCount] = useState<number>(0);
     async function getprofissional() {
@@ -116,6 +117,7 @@ export function ComponenteModal(props: any) {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
                 backdrop="static"
+                
             >
                 <Modal.Body style={{ background: "oklch(96.7% 0.003 264.542)", padding: "0", }}>
                     <img src="/banner.png" alt="" className='imagem_banner' />
@@ -181,6 +183,7 @@ export function ComponenteModal(props: any) {
 
             </Modal>
             <ComponenteModalAlert show={modalShow} data={data} onHide={() => setModalShow(false)} />
+          
         </div>
     );
 }

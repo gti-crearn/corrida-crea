@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ComponenteModal } from "../../components/modal";
+import { ComponenteModal } from "../../components/modalConsulta";
+
 
 
 export function Home() {
     const [modalShow, setModalShow] = useState(true);
-    return (
-     
+    return (     
         <div className="back" >
         <ComponenteModal
           show={modalShow}
