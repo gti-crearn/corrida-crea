@@ -18,8 +18,20 @@ export async function listParticipantesComVouchers(codigo) {
         if (codigo !== codigoEsperado) {
             throw new Error('Código de autorização inválido.');
         }
+
+        const anoAtual = new Date().getFullYear();
+        const inicioAno = new Date(anoAtual, 0, 1);        // 1º de janeiro, 00:00:00
+        const fimAno = new Date(anoAtual + 1, 0, 1);        // 1º de janeiro do próximo ano
+
+
         // Consulta todos os participantes e seus vouchers relacionados
         const participantes = await prisma.participante.findMany({
+            where: {
+                data: {
+                    gte: inicioAno,
+                    lt: fimAno,
+                },
+            },
             include: {
                 vouches: true,
             },
