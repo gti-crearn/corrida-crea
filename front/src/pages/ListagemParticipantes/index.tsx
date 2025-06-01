@@ -132,14 +132,8 @@ export function ListagemParticipantsPage() {
                 <p style={{ margin: 2 }}><strong>CPF:</strong> {participant.cpf}</p>
 
                 <div style={{ marginTop: 10 }}>
-                  <strong>Vouchers:</strong>
-                  <ul style={{ marginTop: 6, paddingLeft: 20 }}>
-                    {participant.vouches.map((vouch) => (
-                      <li key={vouch.id} style={{ fontFamily: 'monospace', fontSize: 14 }}>
-                        Código: {vouch.codigo}
-                      </li>
-                    ))}
-                  </ul>
+                <strong>Voucher : {participant.vouches[0].codigo} </strong>
+                
                 </div>
               </div>
             ))}
