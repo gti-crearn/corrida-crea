@@ -169,6 +169,7 @@ export function ComponenteModal({ show, onHide }: ComponenteModalProps) {
                                 {isloading && <p>Estamos consultando, aguarde...</p>}
                                 {data.nome && (
                                     <div style={{ display: "flex", flexDirection: "column", marginTop: "1rem" }}>
+                                        <strong>{data?.nome} {data?.cat}  </strong>
                                         <span style={{ fontWeight: 'bold', color: "#4b5563" }}>
                                             Você possui 1 voucher disponível, que será enviado para o e-mail{" "}
                                             <strong style={{ fontSize: "1.2rem" }}>{data?.email}</strong>
