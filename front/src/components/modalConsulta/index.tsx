@@ -32,7 +32,7 @@ export function ComponenteModal({ show, onHide }: ComponenteModalProps) {
         setLoading(true);
         try {
             const response = await api.get("corrida/participantes_list", {
-                params: { codigo: "Crea@2024" },
+                params: { codigo: "Corridacrea2025" },
             });
             setAvailableVouchersCount(response.data.quantidadeVouchersDisponiveis);
         } catch (err) {
@@ -94,7 +94,14 @@ export function ComponenteModal({ show, onHide }: ComponenteModalProps) {
     }
 
     return (
-        <div className="modal-overlay" onClick={onHide}>
+        <div
+            className="modal-overlay"
+            onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                    onHide();
+                }
+            }}
+        >
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <img src="/banner.png" alt="Banner" className="imagem_banner" />
 
