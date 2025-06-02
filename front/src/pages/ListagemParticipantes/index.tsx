@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { api } from '../../services/api';
-import {formatarDataParaBR } from '../../utils/data_formatada';
+import { formatarDataParaBR } from '../../utils/data_formatada';
+
+const estiloAnimacao = `
+@keyframes continuousShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+`;
 
 interface Vouch {
   id: number;
@@ -38,7 +48,13 @@ export function ListagemParticipantsPage() {
           params: { codigo: codigoAutorizacao },
         }
       );
-      setParticipants(response.data.participantes);
+
+      // Ordena pela data decrescente (mais recente primeiro)
+      const participantesOrdenados = [...response.data.participantes].sort((a, b) =>
+        new Date(b.data).getTime() - new Date(a.data).getTime()
+      );
+
+      setParticipants(participantesOrdenados);
       setAvailableVouchersCount(response.data.quantidadeVouchersDisponiveis);
       setError(null);
     } catch (err) {
@@ -53,8 +69,13 @@ export function ListagemParticipantsPage() {
     fetchParticipants();
   };
 
+  // Participante mais recente
+  const participanteMaisRecenteId = participants[0]?.id;
+
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: 24 }}>
+      <style>{estiloAnimacao}</style>
+
       <form
         onSubmit={handleSubmit}
         style={{
@@ -118,28 +139,31 @@ export function ListagemParticipantsPage() {
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {participants.map((participant) => (
-              <div
-                key={participant.id}
-                style={{
-                  border: '1px solid #ccc',
-                  borderRadius: 8,
-                  padding: 16,
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-                  backgroundColor: '#fafafa',
-                }}
-              >
-                <h3 style={{ marginBottom: 4, fontSize: 18 }}>{participant.nome}</h3>
-                <p style={{ margin: 2 }}><strong>Cadastrado em:</strong> {formatarDataParaBR(participant.data)}</p>
-                <p style={{ margin: 2 }}><strong>Email:</strong> {participant.email}</p>
-                <p style={{ margin: 2 }}><strong>CPF:</strong> {participant.cpf}</p>
+            {participants.map((participant) => {
+              const isMaisRecente = participant.id === participanteMaisRecenteId;
 
-                <div style={{ marginTop: 10 }}>
-                <strong>Voucher : {participant.vouches[0].codigo} </strong>
-                
+              return (
+                <div
+                  key={participant.id}
+                  style={{
+                    border: isMaisRecente ? '2px solid oklch(70.7% 0.165 254.624)' : '1px solid #ccc',
+                    borderRadius: 8,
+                    padding: 16,
+                    backgroundColor: isMaisRecente ? 'oklch(93.2% 0.032 255.585)' : '#fafafa',
+                    animation: isMaisRecente ? 'continuousShake 1s infinite' : undefined,
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+                  }}
+                >
+                  <h3 style={{ marginBottom: 4, fontSize: 18 }}>{participant.nome}</h3>
+                  <p style={{ margin: 2 }}><strong>Cadastrado em:</strong> {formatarDataParaBR(participant.data)}</p>
+                  <p style={{ margin: 2 }}><strong>Email:</strong> {participant.email}</p>
+                  <p style={{ margin: 2 }}><strong>CPF:</strong> {participant.cpf}</p>
+                  <div style={{ marginTop: 10 }}>
+                    <strong>Voucher: {participant.vouches[0]?.codigo ?? '—'}</strong>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </>
       )}
