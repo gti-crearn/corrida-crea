@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { api } from '../../services/api';
+import {formatarDataParaBR } from '../../utils/data_formatada';
 
 interface Vouch {
   id: number;
@@ -12,6 +13,7 @@ interface Participante {
   nome: string;
   email: string;
   cpf: string;
+  data: string;
   vouches: Vouch[];
 }
 
@@ -128,6 +130,7 @@ export function ListagemParticipantsPage() {
                 }}
               >
                 <h3 style={{ marginBottom: 4, fontSize: 18 }}>{participant.nome}</h3>
+                <p style={{ margin: 2 }}><strong>Cadastrado em:</strong> {formatarDataParaBR(participant.data)}</p>
                 <p style={{ margin: 2 }}><strong>Email:</strong> {participant.email}</p>
                 <p style={{ margin: 2 }}><strong>CPF:</strong> {participant.cpf}</p>
 
