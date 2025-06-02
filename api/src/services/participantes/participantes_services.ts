@@ -72,7 +72,7 @@ async function sendEmail(participanteEmail: string, participanteNome: string, vo
     <div style="margin-top: 2rem;">
         <strong>Para mais informações,</strong>
          <div style="margin-top: 1rem;">
-            <p >Telefone: (84) 4006-7219 / Zap (84) 99128-3827</p>
+            <p >E-mail: corrida2025@crea-rn.org.br<p/>
             <p>Conselho Regional de Engenharia e Agronomia do RN – Crea-RN</p>
             <p>Avenida Senador Salgado Filho, 1840 - Lagoa Nova, Natal - RN, 59056-000</p>
         </div>

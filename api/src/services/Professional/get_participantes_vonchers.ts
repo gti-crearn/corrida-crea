@@ -35,6 +35,9 @@ export async function listParticipantesComVouchers(codigo) {
             include: {
                 vouches: true,
             },
+            orderBy: {
+                data: 'desc', // ou 'asc' se quiser do mais antigo ao mais recente
+              },
         });
 
         // Conta a quantidade de vouchers disponíveis
