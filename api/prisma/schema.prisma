@@ -27,6 +27,7 @@ model Participante {
   cpf       String   // <- REMOVA @unique
   utilizado Boolean  @default(false)
   data      DateTime @default(now())
+  pago      Boolean  @default(false) // Novo campo adicionado
   vouches   Vouch[]
 
   @@map("participantes")
