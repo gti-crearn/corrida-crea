@@ -142,7 +142,7 @@ export function ListagemParticipantsPage() {
                         Total de participantes: <strong>{participants.length}</strong>
                     </p>
                     <p style={{ textAlign: 'center', marginBottom: 24 }}>
-                        Pagamento confirmado: <strong style={{background:"oklch(62.7% 0.194 149.214)", padding:"0.2rem 1rem", color:"white", borderRadius:"5px", marginLeft:"1rem"}}>{participants.filter(p => p.pago).length}</strong>
+                        Pagamentos confirmado: <strong style={{background:"oklch(62.7% 0.194 149.214)", padding:"0.2rem 1rem", color:"white", borderRadius:"5px", marginLeft:"1rem"}}>{participants.filter(p => p.pago).length}</strong>
                     </p>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
