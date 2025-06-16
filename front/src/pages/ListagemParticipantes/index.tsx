@@ -166,7 +166,7 @@ export function ListagemParticipantsPage() {
                                     <p style={{ margin: 2 }}><strong>Email:</strong> {participant.email}</p>
                                     <p style={{ margin: 2 }}><strong>CPF:</strong> {participant.cpf}</p>
                                     <p style={{ margin: 2 }}>
-                                        <strong>Status pagamento:</strong>{' '}
+                                        <strong>Pago:</strong>{' '}
                                         <span style={{ color: participant.pago ? 'oklch(62.7% 0.194 149.214)' : 'oklch(63.7% 0.237 25.331)', fontWeight: 'bold' }}>
                                             {participant.pago ? 'Sim' : 'Não'}
                                         </span>
